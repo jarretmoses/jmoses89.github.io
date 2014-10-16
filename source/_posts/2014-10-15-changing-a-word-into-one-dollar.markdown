@@ -19,7 +19,7 @@ Match example
 {% img /images/capture.png %}
 Capture example
 
-As you can see in the match example, rubular simply matches the substring. However, in the capture example there is a section 'Match groups', which represents the match which was saved in memory for further use.
+As you can see in the [Rubular](www.rubular.com)match example, it simply matches the substring. However, in the capture example there is a section 'Match groups', which represents the match which was saved in memory for further use.
 
 ####What is this '$1'?
 
