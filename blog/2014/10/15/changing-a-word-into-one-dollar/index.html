@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Capturing Regexp and Using &#8216;$1&#8217; - Rarrr</title>
+  <meta name="author" content="Jarret Moses">
+
+  
+  <meta name="description" content="Premise Last night I was solving a problem on CodeWars and though I solved it, I came across a solution I found much cooler and decided to write this &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jmoses89.github.io/blog/2014/10/15/changing-a-word-into-one-dollar">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Rarrr" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Rarrr</a></h1>
+  
+    <h2>The confessions of a velociraptor.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jmoses89.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Capturing Regexp and Using &#8216;$1&#8217;</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-15T19:46:06-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:46 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h4>Premise</h4>
+
+<p>Last night I was solving a problem on <a href="www.codewars.com">CodeWars</a> and though I solved it, I came across a solution I found much cooler and decided to write this post about it. The solution used a regular expression with a capture and this funny little character &lsquo;$1&rsquo; which made me want to find out exactly what was going on so I could use it in the future.</p>
+
+<h3>Relevant Regexp Information</h3>
+
+<h4>Capturing vs. Matching</h4>
+
+<p>In regular expressions you can either match or capture an item. Matching a string is merely a &lsquo;yes&rsquo; or &lsquo;no&rsquo; statement where the string either has a match or doesn&rsquo;t and it returns nothing. On the otherhand, capturing takes the matching item and returns that match so you can infact use that match for some other purpose.
+<img src="/images/match.png" title="image" alt="images">
+Match example
+<img src="/images/capture.png" title="image" alt="images">
+Capture example</p>
+
+<p>As you can see in the match example, rubular simply matches the substring. However, in the capture example there is a section &lsquo;Match groups&rsquo;, which represents the match which was saved in memory for further use.</p>
+
+<h4>What is this &lsquo;$1&rsquo;?</h4>
+
+<p>The &lsquo;$1&rsquo; is an example of some special global variables withing a ruby RegExp expression. According to the ruby regexp documentation pattern <strong><u>matching</u></strong> sets some global variables</p>
+
+<ul>
+<li>$~ is equivalent to ::last_match;</li>
+<li>$` contains string before match;</li>
+<li>$&lsquo; contains string after match;</li>
+<li>$1, $2 and so on contain text matching first, second, etc capture group;</li>
+<li>$+ contains last capture group.</li>
+</ul>
+
+
+<h4>Tying it together</h4>
+
+<p>So back to the CodeWars problem&hellip;.this is what was asked.</p>
+
+<blockquote><p>We need a method for parsing an array of strings to see which of 3 categories they fall into:</p></blockquote>
+
+<h5>Rules</h5>
+
+<ol>
+<li> :alpha strings contain the word &ldquo;alpha&rdquo;</li>
+<li> :beta strings contain the word &ldquo;beta&rdquo;</li>
+<li> :unknown strings don&rsquo;t contain either &ldquo;alpha&rdquo; or &ldquo;beta&rdquo;</li>
+<li> :unknown is also used for nil entries</li>
+<li> No string will contain both &ldquo;alpha&rdquo; and &ldquo;beta&rdquo;</li>
+<li> The strings can contain alpha and beta in any case (e.g. &ldquo;Alpha&rdquo;, &ldquo;BeTa&rdquo;)</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">lines</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;This is an alpha line&quot;</span><span class="p">,</span> <span class="s2">&quot;Beta line next!&quot;</span><span class="p">,</span> <span class="s2">&quot;Another AlphA&quot;</span><span class="p">,</span> <span class="s2">&quot;I have no idea&quot;</span><span class="p">,</span> <span class="kp">nil</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">line_types</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</span><span class='line'><span class="c1">#=&gt;  [ :alpha, :beta, :alpha, :unknown, :unknown ]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>ORIGINAL SOLUTION</h5>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">line_types</span> <span class="n">lines</span>
+</span><span class='line'>  <span class="n">lines</span><span class="o">.</span><span class="n">collect</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">line</span> <span class="o">=~</span> <span class="sr">/alpha/i</span>
+</span><span class='line'>      <span class="ss">:alpha</span>
+</span><span class='line'>    <span class="k">elsif</span> <span class="n">line</span> <span class="o">=~</span> <span class="sr">/beta/i</span>
+</span><span class='line'>      <span class="ss">:beta</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>      <span class="ss">:unknown</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="c1">#=&gt;  [ :alpha, :beta, :alpha, :unknown, :unknown ]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>NEW SOLUTION</h5>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">line_types</span> <span class="n">lines</span>
+</span><span class='line'>  <span class="n">lines</span><span class="o">.</span><span class="n">collect</span> <span class="p">{</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span> <span class="n">line</span> <span class="o">=~</span> <span class="sr">/(alpha|beta)/i</span> <span class="p">?</span> <span class="vg">$1</span><span class="o">.</span><span class="n">downcase</span><span class="o">.</span><span class="n">to_sym</span> <span class="p">:</span> <span class="ss">:unknown</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="c1">#=&gt;  [ :alpha, :beta, :alpha, :unknown, :unknown ]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Summary</h4>
+
+<p>While my original solution works perfectly fine, the new solution uses some cooler ruby (in my opinion) by implementing everythign on one line. The method takes an array of lines and runs the .collect method on it. Each &lsquo;line&rsquo; is tested against the regexp /(alpha|beta)/i which is looking for either a alpha substring OR beta substring with the &lsquo;i&rsquo; meaning case-insensitive. Then if this match is found, since it is in capture parenthesis, the matched string is saved and can be accessed by the &lsquo;$1&rsquo; variable. Then all that is down is downcasing and turning it into a symbol as per the rules. If nothing is matched then the :unknown symbol is placed in the return array. Pretty cool stuff.</p>
+
+<h5>Resources</h5>
+
+<ul>
+<li>(<a href="http://stackoverflow.com/questions/21200514/regular-expression-matching-vs-capturing">http://stackoverflow.com/questions/21200514/regular-expression-matching-vs-capturing</a>)</li>
+<li>(<a href="http://www.ruby-doc.org/core-2.1.1/Regexp.html">http://www.ruby-doc.org/core-2.1.1/Regexp.html</a>)</li>
+<li>(<a href="http://stackoverflow.com/questions/288573/1-and-1-in-ruby">http://stackoverflow.com/questions/288573/1-and-1-in-ruby</a>)</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jarret Moses</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-10-15T19:46:06-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:46 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/flatiron/'>flatiron</a>, <a class='category' href='/blog/categories/school/'>school</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jmoses89.github.io/blog/2014/10/15/changing-a-word-into-one-dollar/" data-via="" data-counturl="http://jmoses89.github.io/blog/2014/10/15/changing-a-word-into-one-dollar/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/10/14/visualize-the-problem/" title="Previous Post: Visualizing Problems and Asking the Right Questions">&laquo; Visualizing Problems and Asking the Right Questions</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/15/changing-a-word-into-one-dollar/">Capturing Regexp and Using &#8216;$1&#8217;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/14/visualize-the-problem/">Visualizing Problems and Asking the Right Questions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/30/my-first-post-on-octopress/">My First Post on Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Jarret Moses -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
