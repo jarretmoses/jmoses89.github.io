@@ -4,7 +4,7 @@
   <title><![CDATA[Jarret Moses]]></title>
   <link href="http://jmoses89.github.io/atom.xml" rel="self"/>
   <link href="http://jmoses89.github.io/"/>
-  <updated>2014-10-16T09:26:55-04:00</updated>
+  <updated>2014-10-16T09:50:07-04:00</updated>
   <id>http://jmoses89.github.io/</id>
   <author>
     <name><![CDATA[Jarret Moses]]></name>
@@ -92,7 +92,7 @@ Capture example</p>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">line_types</span> <span class="n">lines</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">line_types</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 </span><span class='line'>  <span class="n">lines</span><span class="o">.</span><span class="n">collect</span> <span class="k">do</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span>
 </span><span class='line'>    <span class="k">if</span> <span class="n">line</span> <span class="o">=~</span> <span class="sr">/alpha/i</span>
 </span><span class='line'>      <span class="ss">:alpha</span>
@@ -113,7 +113,7 @@ Capture example</p>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">line_types</span> <span class="n">lines</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">line_types</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 </span><span class='line'>  <span class="n">lines</span><span class="o">.</span><span class="n">collect</span> <span class="p">{</span> <span class="o">|</span><span class="n">line</span><span class="o">|</span> <span class="n">line</span> <span class="o">=~</span> <span class="sr">/(alpha|beta)/i</span> <span class="p">?</span> <span class="vg">$1</span><span class="o">.</span><span class="n">downcase</span><span class="o">.</span><span class="n">to_sym</span> <span class="p">:</span> <span class="ss">:unknown</span> <span class="p">}</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'><span class="c1">#=&gt;  [ :alpha, :beta, :alpha, :unknown, :unknown ]</span>
@@ -122,7 +122,7 @@ Capture example</p>
 
 <h4>Summary</h4>
 
-<p>While my original solution works perfectly fine, the new solution uses some cooler ruby (in my opinion) by implementing everythign on one line. The method takes an array of lines and runs the .collect method on it. Each &lsquo;line&rsquo; is tested against the regexp /(alpha|beta)/i which is looking for either a alpha substring OR beta substring with the &lsquo;i&rsquo; meaning case-insensitive. Then if this match is found, since it is in capture parenthesis, the matched string is saved and can be accessed by the &lsquo;$1&rsquo; variable. Then all that is down is downcasing and turning it into a symbol as per the rules. If nothing is matched then the :unknown symbol is placed in the return array. Pretty cool stuff.</p>
+<p>While my original solution works perfectly fine, the new solution uses some cooler ruby (in my opinion) by implementing everythign on one line. The method takes an array of lines and runs the .collect method on it. Each &lsquo;line&rsquo; is tested against the regexp /(alpha|beta)/i which is looking for either a alpha substring OR beta substring with the &lsquo;i&rsquo; meaning case-insensitive. The coparison is used with the &lsquo;=~&rsquo; which either returns the index of the start of the string or nil if no match. Then if this match is found, since it is in capture parenthesis, the matched string is saved and can be accessed by the &lsquo;$1&rsquo; variable. Then all that is down is downcasing and turning it into a symbol as per the rules. If nothing is matched then the :unknown symbol is placed in the return array. Pretty cool stuff.</p>
 
 <h5>Resources</h5>
 
