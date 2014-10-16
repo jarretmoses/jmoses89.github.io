@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Flatiron | Rarrr]]></title>
+  <link href="http://jmoses89.github.io/blog/categories/flatiron/atom.xml" rel="self"/>
+  <link href="http://jmoses89.github.io/"/>
+  <updated>2014-10-15T21:10:12-04:00</updated>
+  <id>http://jmoses89.github.io/</id>
+  <author>
+    <name><![CDATA[Jarret Moses]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Capturing Regexp and Using '$1']]></title>
+    <link href="http://jmoses89.github.io/blog/2014/10/15/changing-a-word-into-one-dollar/"/>
+    <updated>2014-10-15T19:46:06-04:00</updated>
+    <id>http://jmoses89.github.io/blog/2014/10/15/changing-a-word-into-one-dollar</id>
+    <content type="html"><![CDATA[<h4>Premise</h4>
+
+<p>Last night I was solving a problem on <a href="www.codewars.com">CodeWars</a> and though I solved it, I came across a solution I found much cooler and decided to write this post about it. The solution used a regular expression with a capture and this funny little character &lsquo;$1&rsquo; which made me want to find out exactly what was going on so I could use it in the future.</p>
+
+<h3>Relevant Regexp Information</h3>
+
+<h4>Capturing vs. Matching</h4>
+
+<p>In regular expressions you can either match or capture an item. Matching a string is merely a &lsquo;yes&rsquo; or &lsquo;no&rsquo; statement where the string either has a match or doesn&rsquo;t and it returns nothing. On the otherhand, capturing takes the matching item and returns that match so you can infact use that match for some other purpose.
+<img src="/images/match.png" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" >
+Match example
+<img src="/images/capture.png" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" >
+Capture example</p>
+
+<p>As you can see in the match example, rubular simply matches the substring. However, in the capture example there is a section &lsquo;Match groups&rsquo;, which represents the match which was saved in memory for further use.</p>
+
+<h4>What is this &lsquo;$1&rsquo;?</h4>
+
+<p>The &lsquo;$1&rsquo; is an example of some special global variables withing a ruby RegExp expression. According to the ruby regexp documentation pattern <strong><u>matching</u></strong> sets some global variables</p>
+
+<ul>
+<li>$~ is equivalent to ::last_match;</li>
+<li>$` contains string before match;</li>
+<li>$&lsquo; contains string after match;</li>
+<li>$1, $2 and so on contain text matching first, second, etc capture group;</li>
+<li>$+ contains last capture group.</li>
+</ul>
+
+
+<h4>Tying it together</h4>
+
+<p>So back to the CodeWars problem&hellip;.this is what was asked.</p>
+
+<blockquote><p>We need a method for parsing an array of strings to see which of 3 categories they fall into:</p></blockquote>
+
+<h5>Rules</h5>
+
+<ol>
+<li> :alpha strings contain the word &ldquo;alpha&rdquo;</li>
+<li> :beta strings contain the word &ldquo;beta&rdquo;</li>
+<li> :unknown strings don&rsquo;t contain either &ldquo;alpha&rdquo; or &ldquo;beta&rdquo;</li>
+<li> :unknown is also used for nil entries</li>
+<li> No string will contain both &ldquo;alpha&rdquo; and &ldquo;beta&rdquo;</li>
+<li> The strings can contain alpha and beta in any case (e.g. &ldquo;Alpha&rdquo;, &ldquo;BeTa&rdquo;)</li>
+</ol>
+
+
+<pre><code class="ruby">lines = ["This is an alpha line", "Beta line next!", "Another AlphA", "I have no idea", nil]
+
+line_types(lines)
+#=&gt;  [ :alpha, :beta, :alpha, :unknown, :unknown ]
+</code></pre>
+
+<h5>ORIGINAL SOLUTION</h5>
+
+<pre><code class="ruby">def line_types lines
+  lines.collect do |line|
+    if line =~ /alpha/i
+      :alpha
+    elsif line =~ /beta/i
+      :beta
+    else
+      :unknown
+    end
+  end
+end
+#=&gt;  [ :alpha, :beta, :alpha, :unknown, :unknown ]
+</code></pre>
+
+<h5>NEW SOLUTION</h5>
+
+<pre><code class="ruby">def line_types lines
+  lines.collect { |line| line =~ /(alpha|beta)/i ? $1.downcase.to_sym : :unknown }
+end
+#=&gt;  [ :alpha, :beta, :alpha, :unknown, :unknown ]
+</code></pre>
+
+<h4>Summary</h4>
+
+<p>While my original solution works perfectly fine, the new solution uses some cooler ruby (in my opinion) by implementing everythign on one line. The method takes an array of lines and runs the .collect method on it. Each &lsquo;line&rsquo; is tested against the regexp /(alpha|beta)/i which is looking for either a alpha substring OR beta substring with the &lsquo;i&rsquo; meaning case-insensitive. Then if this match is found, since it is in capture parenthesis, the matched string is saved and can be accessed by the &lsquo;$1&rsquo; variable. Then all that is down is downcasing and turning it into a symbol as per the rules. If nothing is matched then the :unknown symbol is placed in the return array. Pretty cool stuff.</p>
+
+<h5>Resources</h5>
+
+<ul>
+<li>(<a href="http://stackoverflow.com/questions/21200514/regular-expression-matching-vs-capturing">http://stackoverflow.com/questions/21200514/regular-expression-matching-vs-capturing</a>)</li>
+<li>(<a href="http://www.ruby-doc.org/core-2.1.1/Regexp.html">http://www.ruby-doc.org/core-2.1.1/Regexp.html</a>)</li>
+<li>(<a href="http://stackoverflow.com/questions/288573/1-and-1-in-ruby">http://stackoverflow.com/questions/288573/1-and-1-in-ruby</a>)</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Visualizing Problems and Asking the Right Questions]]></title>
+    <link href="http://jmoses89.github.io/blog/2014/10/14/visualize-the-problem/"/>
+    <updated>2014-10-14T20:05:26-04:00</updated>
+    <id>http://jmoses89.github.io/blog/2014/10/14/visualize-the-problem</id>
+    <content type="html"><![CDATA[<h4>Premise</h4>
+
+<p>If you&rsquo;re like me, you&rsquo;ve probably gotten stuck on a problem and after awhile realized that you don&rsquo;t even fully understand what the problem is that you;re trying to solve. This leads to way too much time frustratingly trying to just code your way through it until something finally works. While this may be true sometimes, I&rsquo;ve found that these next steps will help you calmly and collectively solve your problem.</p>
+
+<ol>
+<li> Stop what you&rsquo;re doing and take a deep breathe</li>
+<li> Ask yourself what is the current problem you are trying to solve</li>
+<li> WRITE IT DOWN</li>
+<li> Repeat until each ministep is done</li>
+</ol>
+
+
+<h4>What sparked this post?</h4>
+
+<p>While working on the ruby-allergy lab I realized I simply did not understand how binary operators could possibly help me solve this problem. SO&hellip;I decided to ask myself how the values look in binary and I drew a picture to see if anything would click. Sure enough it did&hellip;</p>
+
+<h4>What is a binary number?</h4>
+
+<p>A binary number is simply a representation of an integer using 1&rsquo;s and 0&rsquo;s.
+Starting from the right most value (1) every next value is raised to the power of 2</p>
+
+<table>
+<thead>
+<tr>
+<th>  Integer      </th>
+<th style="text-align:center;">    Value      </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>      0        </td>
+<td style="text-align:center;">        0      </td>
+</tr>
+<tr>
+<td>      1        </td>
+<td style="text-align:center;">        1      </td>
+</tr>
+<tr>
+<td>      2        </td>
+<td style="text-align:center;">       10      </td>
+</tr>
+<tr>
+<td>      3        </td>
+<td style="text-align:center;">       11      </td>
+</tr>
+<tr>
+<td>      4        </td>
+<td style="text-align:center;">      100      </td>
+</tr>
+<tr>
+<td>      8        </td>
+<td style="text-align:center;">     1000      </td>
+</tr>
+<tr>
+<td>     16        </td>
+<td style="text-align:center;">    10000      </td>
+</tr>
+<tr>
+<td>               </td>
+<td style="text-align:center;">               </td>
+</tr>
+</tbody>
+</table>
+
+
+<p>Every added digit is double the one before it</p>
+
+<h4>Binary operators to know</h4>
+
+<p>&lsquo;&amp;&rsquo; AND operator returns the common binary values between 2 numbers</p>
+
+<pre><code class="ruby">1001 
+    &amp; 
+1101
+#=&gt; 1001
+</code></pre>
+
+<p>&lsquo;^&rsquo; XOR operator returns a value with 1 bits where either value had a 1</p>
+
+<pre><code class="ruby">0001 
+    ^ 
+1000
+#=&gt; 1001
+</code></pre>
+
+<p>For the purpose of this problem I only needed the &lsquo;&amp;&rsquo;, but including another definition of a binary operator you can get a better sense of how it works. Additionally the code snippets are not how you would actually use the operators but are setup to give maximum <strong>VISUAL</strong> understanding.</p>
+
+<h4>The Problem to Solve</h4>
+
+<p>The problem to solve is given a allergy score, how do you figure out what allergies you have?</p>
+
+<h4>Tying it all together</h4>
+
+<p>Now that we know the bare minimum of binary and their operators I take a look at the allergy problem. S I ask <strong>&lsquo;Where does this knowledge of binary come into play within the problem?&rsquo;</strong>Upon inspection I realize that each allergy&rsquo;s value reflected a specific binary value that fell perfectly on a power of 2.</p>
+
+<pre><code class="ruby">{"cat" =&gt; 128}
+#=&gt; 10000000 
+
+{"Pollen" =&gt; 64}
+#=&gt; 01000000
+
+{"Chocolate" =&gt; 32}
+#=&gt; 00100000
+</code></pre>
+
+<p>So that&rsquo;s all good and dandy but how does this help me solve the problem? Well quite simply the next question I asked myself is, <strong>&lsquo;What does the binary score of having all allergies look like?&rsquo;</strong></p>
+
+<pre><code class="ruby">"Binary value of having ALL allergies"
+#=&gt; 11111111
+</code></pre>
+
+<p>From here the pieces start to fall into place. Each spot represents an allergy and a 1 in that spot means that you have the allergy while a 0 means you don&rsquo;t.Thus my minor understanding of binary is all I need becasue I&rsquo;ve turned the problem into a graphical one rather than actully worrying about doing math in binary. The next question I asked was <strong>&lsquo;How does the given allergy score look in binary?&rsquo;</strong></p>
+
+<pre><code class="ruby">"Score of 509"
+#=&gt; 0111111101
+</code></pre>
+
+<p>Looking at the binary value I realize that the value is way more than the maximum value of having all allergies. I know the answer is staring me in the face and I don&rsquo;t need to do any kind of complicated math. After writing this all out it hits me. If the &lsquo;&amp;&rsquo; operator returns only values that have 1&rsquo;s in the same spot and I know both the binary scores of the one given and each allergy I can simply compare the given score with each allergy score and if anything greater than 0 returns then the allergy is added.</p>
+
+<pre><code class="ruby">"Comparing 509(given) with 128(cats)"
+0111111101
+          &amp;
+0010000000
+
+#=&gt; 10000000 Cat allergy is in the solution 
+
+"Comparing 509(given) with 2(peanuts)"
+0111111101
+          &amp;
+0000000010
+
+#=&gt; 00000000 Peanut allergy is not in the solution     
+</code></pre>
+
+<p>The only final thing to point out is since the given score of 509 contains more binary values, the score of 128 is the equivalent of having 0 for every other value after that thus the 2 extra 0&rsquo;s after the 128th bit. Adding these zeros help with <strong>VISUAL</strong> clarity.</p>
+
+<h4>FINAL SOLUTION</h4>
+
+<pre><code class="ruby">#constant hash
+ALLERGIES =  { 
+                "cats" =&gt; 128, "pollen" =&gt; 64, "chocolate" =&gt; 32,
+                "tomatoes" =&gt; 16, "strawberries" =&gt; 8, "shellfish" =&gt; 4,
+                "peanuts" =&gt; 2, "eggs" =&gt; 1
+              }
+
+#find_allergies method
+def find_allergies
+  ALLERGIES.each do |allergy, value|
+    if score &amp; value &gt; 0
+      allergies &lt;&lt; allergy
+    end
+  end
+end
+</code></pre>
+
+<h4>SUMMARY</h4>
+
+<p>We as humans are visual creatures. Sometimes thinking isnt enough and the simple act of writing things down and asking questions about what you&rsquo;ve written down is all you need to solve a problem. So next time you&rsquo;re stuck, draw a picture, not only can it help you but it&rsquo;s fun!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My First Post on Octopress]]></title>
+    <link href="http://jmoses89.github.io/blog/2014/09/30/my-first-post-on-octopress/"/>
+    <updated>2014-09-30T21:43:39-04:00</updated>
+    <id>http://jmoses89.github.io/blog/2014/09/30/my-first-post-on-octopress</id>
+    <content type="html"><![CDATA[<p>&ldquo;Hello, World&rdquo;</p>
+]]></content>
+  </entry>
+  
+</feed>

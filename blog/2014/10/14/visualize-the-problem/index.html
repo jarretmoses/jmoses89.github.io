@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Visualizing Problems and Asking the Right Questions - Rarrr</title>
+  <meta name="author" content="Jarret Moses">
+
+  
+  <meta name="description" content="Premise If you&rsquo;re like me, you&rsquo;ve probably gotten stuck on a problem and after awhile realized that you don&rsquo;t even fully understand &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jmoses89.github.io/blog/2014/10/14/visualize-the-problem">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Rarrr" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Rarrr</a></h1>
+  
+    <h2>The confessions of a velociraptor.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jmoses89.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Visualizing Problems and Asking the Right Questions</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-14T20:05:26-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:05 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h4>Premise</h4>
+
+<p>If you&rsquo;re like me, you&rsquo;ve probably gotten stuck on a problem and after awhile realized that you don&rsquo;t even fully understand what the problem is that you;re trying to solve. This leads to way too much time frustratingly trying to just code your way through it until something finally works. While this may be true sometimes, I&rsquo;ve found that these next steps will help you calmly and collectively solve your problem.</p>
+
+<ol>
+<li> Stop what you&rsquo;re doing and take a deep breathe</li>
+<li> Ask yourself what is the current problem you are trying to solve</li>
+<li> WRITE IT DOWN</li>
+<li> Repeat until each ministep is done</li>
+</ol>
+
+
+<h4>What sparked this post?</h4>
+
+<p>While working on the ruby-allergy lab I realized I simply did not understand how binary operators could possibly help me solve this problem. SO&hellip;I decided to ask myself how the values look in binary and I drew a picture to see if anything would click. Sure enough it did&hellip;</p>
+
+<h4>What is a binary number?</h4>
+
+<p>A binary number is simply a representation of an integer using 1&rsquo;s and 0&rsquo;s.
+Starting from the right most value (1) every next value is raised to the power of 2</p>
+
+<table>
+<thead>
+<tr>
+<th>  Integer      </th>
+<th style="text-align:center;">    Value      </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>      0        </td>
+<td style="text-align:center;">        0      </td>
+</tr>
+<tr>
+<td>      1        </td>
+<td style="text-align:center;">        1      </td>
+</tr>
+<tr>
+<td>      2        </td>
+<td style="text-align:center;">       10      </td>
+</tr>
+<tr>
+<td>      3        </td>
+<td style="text-align:center;">       11      </td>
+</tr>
+<tr>
+<td>      4        </td>
+<td style="text-align:center;">      100      </td>
+</tr>
+<tr>
+<td>      8        </td>
+<td style="text-align:center;">     1000      </td>
+</tr>
+<tr>
+<td>     16        </td>
+<td style="text-align:center;">    10000      </td>
+</tr>
+<tr>
+<td>               </td>
+<td style="text-align:center;">               </td>
+</tr>
+</tbody>
+</table>
+
+
+<p>Every added digit is double the one before it</p>
+
+<h4>Binary operators to know</h4>
+
+<p>&lsquo;&amp;&rsquo; AND operator returns the common binary values between 2 numbers</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1001</span>
+</span><span class='line'>    <span class="o">&amp;</span>
+</span><span class='line'><span class="mi">1101</span>
+</span><span class='line'><span class="c1">#=&gt; 1001</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&lsquo;^&rsquo; XOR operator returns a value with 1 bits where either value had a 1</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mo">0001</span>
+</span><span class='line'>    <span class="o">^</span>
+</span><span class='line'><span class="mi">1000</span>
+</span><span class='line'><span class="c1">#=&gt; 1001</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For the purpose of this problem I only needed the &lsquo;&amp;&rsquo;, but including another definition of a binary operator you can get a better sense of how it works. Additionally the code snippets are not how you would actually use the operators but are setup to give maximum <strong>VISUAL</strong> understanding.</p>
+
+<h4>The Problem to Solve</h4>
+
+<p>The problem to solve is given a allergy score, how do you figure out what allergies you have?</p>
+
+<h4>Tying it all together</h4>
+
+<p>Now that we know the bare minimum of binary and their operators I take a look at the allergy problem. S I ask <strong>&lsquo;Where does this knowledge of binary come into play within the problem?&rsquo;</strong>Upon inspection I realize that each allergy&rsquo;s value reflected a specific binary value that fell perfectly on a power of 2.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="p">{</span><span class="s2">&quot;cat&quot;</span> <span class="o">=&gt;</span> <span class="mi">128</span><span class="p">}</span>
+</span><span class='line'><span class="c1">#=&gt; 10000000 </span>
+</span><span class='line'>
+</span><span class='line'><span class="p">{</span><span class="s2">&quot;Pollen&quot;</span> <span class="o">=&gt;</span> <span class="mi">64</span><span class="p">}</span>
+</span><span class='line'><span class="c1">#=&gt; 01000000</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">{</span><span class="s2">&quot;Chocolate&quot;</span> <span class="o">=&gt;</span> <span class="mi">32</span><span class="p">}</span>
+</span><span class='line'><span class="c1">#=&gt; 00100000</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So that&rsquo;s all good and dandy but how does this help me solve the problem? Well quite simply the next question I asked myself is, <strong>&lsquo;What does the binary score of having all allergies look like?&rsquo;</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;Binary value of having ALL allergies&quot;</span>
+</span><span class='line'><span class="c1">#=&gt; 11111111</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>From here the pieces start to fall into place. Each spot represents an allergy and a 1 in that spot means that you have the allergy while a 0 means you don&rsquo;t.Thus my minor understanding of binary is all I need becasue I&rsquo;ve turned the problem into a graphical one rather than actully worrying about doing math in binary. The next question I asked was <strong>&lsquo;How does the given allergy score look in binary?&rsquo;</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;Score of 509&quot;</span>
+</span><span class='line'><span class="c1">#=&gt; 0111111101</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Looking at the binary value I realize that the value is way more than the maximum value of having all allergies. I know the answer is staring me in the face and I don&rsquo;t need to do any kind of complicated math. After writing this all out it hits me. If the &lsquo;&amp;&rsquo; operator returns only values that have 1&rsquo;s in the same spot and I know both the binary scores of the one given and each allergy I can simply compare the given score with each allergy score and if anything greater than 0 returns then the allergy is added.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="s2">&quot;Comparing 509(given) with 128(cats)&quot;</span>
+</span><span class='line'><span class="mo">0111111101</span>
+</span><span class='line'>          <span class="o">&amp;</span>
+</span><span class='line'><span class="mo">0010000000</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#=&gt; 10000000 Cat allergy is in the solution </span>
+</span><span class='line'>
+</span><span class='line'><span class="s2">&quot;Comparing 509(given) with 2(peanuts)&quot;</span>
+</span><span class='line'><span class="mo">0111111101</span>
+</span><span class='line'>          <span class="o">&amp;</span>
+</span><span class='line'><span class="mo">0000000010</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#=&gt; 00000000 Peanut allergy is not in the solution     </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The only final thing to point out is since the given score of 509 contains more binary values, the score of 128 is the equivalent of having 0 for every other value after that thus the 2 extra 0&rsquo;s after the 128th bit. Adding these zeros help with <strong>VISUAL</strong> clarity.</p>
+
+<h4>FINAL SOLUTION</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#constant hash</span>
+</span><span class='line'><span class="no">ALLERGIES</span> <span class="o">=</span>  <span class="p">{</span>
+</span><span class='line'>                <span class="s2">&quot;cats&quot;</span> <span class="o">=&gt;</span> <span class="mi">128</span><span class="p">,</span> <span class="s2">&quot;pollen&quot;</span> <span class="o">=&gt;</span> <span class="mi">64</span><span class="p">,</span> <span class="s2">&quot;chocolate&quot;</span> <span class="o">=&gt;</span> <span class="mi">32</span><span class="p">,</span>
+</span><span class='line'>                <span class="s2">&quot;tomatoes&quot;</span> <span class="o">=&gt;</span> <span class="mi">16</span><span class="p">,</span> <span class="s2">&quot;strawberries&quot;</span> <span class="o">=&gt;</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;shellfish&quot;</span> <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span>
+</span><span class='line'>                <span class="s2">&quot;peanuts&quot;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;eggs&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span>
+</span><span class='line'>              <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#find_allergies method</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">find_allergies</span>
+</span><span class='line'>  <span class="no">ALLERGIES</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">allergy</span><span class="p">,</span> <span class="n">value</span><span class="o">|</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">score</span> <span class="o">&amp;</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span><span class='line'>      <span class="n">allergies</span> <span class="o">&lt;&lt;</span> <span class="n">allergy</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>SUMMARY</h4>
+
+<p>We as humans are visual creatures. Sometimes thinking isnt enough and the simple act of writing things down and asking questions about what you&rsquo;ve written down is all you need to solve a problem. So next time you&rsquo;re stuck, draw a picture, not only can it help you but it&rsquo;s fun!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jarret Moses</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-10-14T20:05:26-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:05 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/flatiron/'>flatiron</a>, <a class='category' href='/blog/categories/school/'>school</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jmoses89.github.io/blog/2014/10/14/visualize-the-problem/" data-via="" data-counturl="http://jmoses89.github.io/blog/2014/10/14/visualize-the-problem/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/09/30/my-first-post-on-octopress/" title="Previous Post: My First Post On Octopress">&laquo; My First Post On Octopress</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/10/15/changing-a-word-into-one-dollar/" title="Next Post: Capturing Regexp and Using '$1'">Capturing Regexp and Using &#8216;$1&#8217; &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/15/changing-a-word-into-one-dollar/">Capturing Regexp and Using &#8216;$1&#8217;</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/14/visualize-the-problem/">Visualizing Problems and Asking the Right Questions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/09/30/my-first-post-on-octopress/">My First Post on Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Jarret Moses -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
