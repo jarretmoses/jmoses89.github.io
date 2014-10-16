@@ -4,7 +4,7 @@
   <title><![CDATA[Category: School | Jarret Moses]]></title>
   <link href="http://jmoses89.github.io/blog/categories/school/atom.xml" rel="self"/>
   <link href="http://jmoses89.github.io/"/>
-  <updated>2014-10-16T08:48:14-04:00</updated>
+  <updated>2014-10-16T09:21:57-04:00</updated>
   <id>http://jmoses89.github.io/</id>
   <author>
     <name><![CDATA[Jarret Moses]]></name>
@@ -32,7 +32,7 @@ Match example
 <img src="/images/capture.png">
 Capture example</p>
 
-<p>As you can see in the match example, rubular simply matches the substring. However, in the capture example there is a section &lsquo;Match groups&rsquo;, which represents the match which was saved in memory for further use.</p>
+<p>As you can see in the <a href="www.rubular.com">Rubular</a>match example, it simply matches the substring. However, in the capture example there is a section &lsquo;Match groups&rsquo;, which represents the match which was saved in memory for further use.</p>
 
 <h4>What is this &lsquo;$1&rsquo;?</h4>
 
