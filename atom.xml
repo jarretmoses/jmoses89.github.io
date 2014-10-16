@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Rarrr]]></title>
+  <title><![CDATA[Jarret Moses]]></title>
   <link href="http://jmoses89.github.io/atom.xml" rel="self"/>
   <link href="http://jmoses89.github.io/"/>
-  <updated>2014-10-15T21:10:12-04:00</updated>
+  <updated>2014-10-16T08:45:19-04:00</updated>
   <id>http://jmoses89.github.io/</id>
   <author>
     <name><![CDATA[Jarret Moses]]></name>
@@ -27,9 +27,9 @@
 <h4>Capturing vs. Matching</h4>
 
 <p>In regular expressions you can either match or capture an item. Matching a string is merely a &lsquo;yes&rsquo; or &lsquo;no&rsquo; statement where the string either has a match or doesn&rsquo;t and it returns nothing. On the otherhand, capturing takes the matching item and returns that match so you can infact use that match for some other purpose.
-<img src="http://jmoses89.github.io/images/match.png" title="image" alt="images">
+/images/match.png
 Match example
-<img src="http://jmoses89.github.io/images/capture.png" title="image" alt="images">
+/images/capture.png
 Capture example</p>
 
 <p>As you can see in the match example, rubular simply matches the substring. However, in the capture example there is a section &lsquo;Match groups&rsquo;, which represents the match which was saved in memory for further use.</p>
@@ -69,10 +69,12 @@ Capture example</p>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
+<span class='line-number'>5</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">lines</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;This is an alpha line&quot;</span><span class="p">,</span> <span class="s2">&quot;Beta line next!&quot;</span><span class="p">,</span> <span class="s2">&quot;Another AlphA&quot;</span><span class="p">,</span> <span class="s2">&quot;I have no idea&quot;</span><span class="p">,</span> <span class="kp">nil</span><span class="o">]</span>
+</span><span class='line'><span class="c1">#=&gt; example input</span>
 </span><span class='line'>
 </span><span class='line'><span class="n">line_types</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
-</span><span class='line'><span class="c1">#=&gt;  [ :alpha, :beta, :alpha, :unknown, :unknown ]</span>
+</span><span class='line'><span class="c1">#=&gt;  [ :alpha, :beta, :alpha, :unknown, :unknown ] example output</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

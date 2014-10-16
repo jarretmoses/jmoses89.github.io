@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Flatiron | Rarrr]]></title>
+  <title><![CDATA[Category: Flatiron | Jarret Moses]]></title>
   <link href="http://jmoses89.github.io/blog/categories/flatiron/atom.xml" rel="self"/>
   <link href="http://jmoses89.github.io/"/>
-  <updated>2014-10-15T21:10:12-04:00</updated>
+  <updated>2014-10-16T08:45:19-04:00</updated>
   <id>http://jmoses89.github.io/</id>
   <author>
     <name><![CDATA[Jarret Moses]]></name>
@@ -27,9 +27,9 @@
 <h4>Capturing vs. Matching</h4>
 
 <p>In regular expressions you can either match or capture an item. Matching a string is merely a &lsquo;yes&rsquo; or &lsquo;no&rsquo; statement where the string either has a match or doesn&rsquo;t and it returns nothing. On the otherhand, capturing takes the matching item and returns that match so you can infact use that match for some other purpose.
-<img src="/images/match.png" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" >
+/images/match.png
 Match example
-<img src="/images/capture.png" title="&lsquo;image&rsquo; &lsquo;images&rsquo;" >
+/images/capture.png
 Capture example</p>
 
 <p>As you can see in the match example, rubular simply matches the substring. However, in the capture example there is a section &lsquo;Match groups&rsquo;, which represents the match which was saved in memory for further use.</p>
@@ -66,9 +66,10 @@ Capture example</p>
 
 
 <pre><code class="ruby">lines = ["This is an alpha line", "Beta line next!", "Another AlphA", "I have no idea", nil]
+#=&gt; example input
 
 line_types(lines)
-#=&gt;  [ :alpha, :beta, :alpha, :unknown, :unknown ]
+#=&gt;  [ :alpha, :beta, :alpha, :unknown, :unknown ] example output
 </code></pre>
 
 <h5>ORIGINAL SOLUTION</h5>
