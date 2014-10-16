@@ -53,7 +53,7 @@ line_types(lines)
 ```
 ##### ORIGINAL SOLUTION
 ```ruby
-def line_types lines
+def line_types(lines)
   lines.collect do |line|
     if line =~ /alpha/i
       :alpha
@@ -69,14 +69,14 @@ end
 
 ##### NEW SOLUTION
 ```ruby
-def line_types lines
+def line_types(lines)
   lines.collect { |line| line =~ /(alpha|beta)/i ? $1.downcase.to_sym : :unknown }
 end
 #=>  [ :alpha, :beta, :alpha, :unknown, :unknown ]
 ```
 
 ####Summary
-While my original solution works perfectly fine, the new solution uses some cooler ruby (in my opinion) by implementing everythign on one line. The method takes an array of lines and runs the .collect method on it. Each 'line' is tested against the regexp /(alpha|beta)/i which is looking for either a alpha substring OR beta substring with the 'i' meaning case-insensitive. Then if this match is found, since it is in capture parenthesis, the matched string is saved and can be accessed by the '$1' variable. Then all that is down is downcasing and turning it into a symbol as per the rules. If nothing is matched then the :unknown symbol is placed in the return array. Pretty cool stuff.
+While my original solution works perfectly fine, the new solution uses some cooler ruby (in my opinion) by implementing everythign on one line. The method takes an array of lines and runs the .collect method on it. Each 'line' is tested against the regexp /(alpha|beta)/i which is looking for either a alpha substring OR beta substring with the 'i' meaning case-insensitive. The coparison is used with the '=~' which either returns the index of the start of the string or nil if no match. Then if this match is found, since it is in capture parenthesis, the matched string is saved and can be accessed by the '$1' variable. Then all that is down is downcasing and turning it into a symbol as per the rules. If nothing is matched then the :unknown symbol is placed in the return array. Pretty cool stuff.
 
 #####Resources
 * (http://stackoverflow.com/questions/21200514/regular-expression-matching-vs-capturing)
