@@ -4,7 +4,7 @@
   <title><![CDATA[Category: School | Jarret Moses]]></title>
   <link href="http://jmoses89.github.io/blog/categories/school/atom.xml" rel="self"/>
   <link href="http://jmoses89.github.io/"/>
-  <updated>2014-10-16T08:45:19-04:00</updated>
+  <updated>2014-10-16T08:48:14-04:00</updated>
   <id>http://jmoses89.github.io/</id>
   <author>
     <name><![CDATA[Jarret Moses]]></name>
@@ -27,9 +27,9 @@
 <h4>Capturing vs. Matching</h4>
 
 <p>In regular expressions you can either match or capture an item. Matching a string is merely a &lsquo;yes&rsquo; or &lsquo;no&rsquo; statement where the string either has a match or doesn&rsquo;t and it returns nothing. On the otherhand, capturing takes the matching item and returns that match so you can infact use that match for some other purpose.
-/images/match.png
+<img src="/images/match.png">
 Match example
-/images/capture.png
+<img src="/images/capture.png">
 Capture example</p>
 
 <p>As you can see in the match example, rubular simply matches the substring. However, in the capture example there is a section &lsquo;Match groups&rsquo;, which represents the match which was saved in memory for further use.</p>
