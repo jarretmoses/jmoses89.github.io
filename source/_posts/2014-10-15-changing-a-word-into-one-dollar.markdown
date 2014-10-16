@@ -14,9 +14,9 @@ Last night I was solving a problem on [CodeWars](www.codewars.com) and though I 
 
 ####Capturing vs. Matching
 In regular expressions you can either match or capture an item. Matching a string is merely a 'yes' or 'no' statement where the string either has a match or doesn't and it returns nothing. On the otherhand, capturing takes the matching item and returns that match so you can infact use that match for some other purpose.
-/images/match.png
+{% img /images/match.png %}
 Match example
-/images/capture.png
+{% img /images/capture.png %}
 Capture example
 
 As you can see in the match example, rubular simply matches the substring. However, in the capture example there is a section 'Match groups', which represents the match which was saved in memory for further use.
