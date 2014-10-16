@@ -82,3 +82,4 @@ While my original solution works perfectly fine, the new solution uses some cool
 * (http://stackoverflow.com/questions/21200514/regular-expression-matching-vs-capturing)
 * (http://www.ruby-doc.org/core-2.1.1/Regexp.html)
 * (http://stackoverflow.com/questions/288573/1-and-1-in-ruby)
+* (http://www.rubular.com)
