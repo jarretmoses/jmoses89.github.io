@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>So Many Forms, Which Do I Use?!? - Jarret Moses</title>
+  <meta name="author" content="Jarret Moses">
+
+  
+  <meta name="description" content="About After being bombarded by forms today I felt a little overwhelmed. While I undertood how to use the different types of forms I was not grasping &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jmoses89.github.io/blog/2014/10/30/should-i-use-form-for-or-form-tag">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Jarret Moses" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='https://fonts.googleapis.com/css?family=Noto+Serif:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Jarret Moses</a></h1>
+  
+    <h2>The insights of a newby developer.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  
+  
+</ul>
+
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">So Many Forms, Which Do I Use?!?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-30T23:06:15-04:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>About</h3>
+
+<p>After being bombarded by forms today I felt a little overwhelmed. While I undertood how to use the different types of forms I was not grasping the overall concept of when I should or could use them. So I sat down to reflect on all this information to come up with as simple a thought process as possible to decide what kind of form I could use&hellip;</p>
+
+<h3>Findings</h3>
+
+<p>Upon thinking about my predicament and doing a little reviewing it dawned on me that the answer was staring at me in the face all along. The simplicity of the answer actually made me feel a little silly that i hadn&rsquo;t noticed this earlier.
+So the answer(which is actually the question you should ask yourself when deciding) to how do you decide what form to use is&hellip; <em>&ldquo;Is there a <strong>model</strong> associated with the form?&rdquo;</em> That&rsquo;s it. I&#8217;ts that simple. If the form you are creating has a <strong>model</strong> associated with it then you can (and should cause it&rsquo;s magical) use form_for. If not then you use form_tag or even raw html forms if you feel so inclined.</p>
+
+<h3>Example</h3>
+
+<p>  This example is from the <em>&lsquo;formal-affair-rails-ruby-006&rsquo;</em> lab</p>
+
+<p>  So in one portion of the lab we were asked to made a form for a new baby. Now with my simplified thought process, I ask myself if a baby has a model associated with it. In this case the answer is yes so this is what I do.</p>
+
+<p>  <figure class='code'><figcaption><span> (for.erb)</span> <a href='/downloads/code/for.erb'>download</a></figcaption></p>
+
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">  </span><span class="cp">&lt;%=</span> <span class="n">form_for</span><span class="p">(</span><span class="vi">@baby</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="x">      </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:first_name</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="x">      </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:first_name</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="x">      </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:last_name</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="x">      </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">text_field</span> <span class="ss">:last_name</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="x">      </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:weight</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="x">      </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">number_field</span> <span class="ss">:weight</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="x">      </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">label</span> <span class="ss">:birth_date</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="x">      </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">date_field</span> <span class="ss">:birth_date</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="x">      </span><span class="cp">&lt;%=</span> <span class="n">f</span><span class="o">.</span><span class="n">submit</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="x">  </span><span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div>
+
+
+<p></figure></p>
+
+<p>  Now in another part of the lab, I am asked to make a form for a new search. (The specs specifically ask for raw html but for arguments sake I am doing other wise) So I ask myself does a search have a model associated with it? Here the answer is no. Thus I revert to using the form_tag convention to create my form as follows.</p>
+
+<p>  <figure class='code'><figcaption><span> (tag.erb)</span> <a href='/downloads/code/tag.erb'>download</a></figcaption></p>
+
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="cp">&lt;%=</span> <span class="n">form_tag</span><span class="p">(</span><span class="n">searches_path</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="cp">&lt;%=</span> <span class="n">hidden_field_tag</span> <span class="s2">&quot;authenticity_token&quot;</span><span class="p">,</span> <span class="n">form_authenticity_token</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="cp">&lt;%=</span> <span class="n">text_field_tag</span> <span class="s2">&quot;q&quot;</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span><span class='line'><span class="cp">&lt;%=</span> <span class="n">button_tag</span> <span class="cp">%&gt;</span><span class="x"></span>
+</span></code></pre></td></tr></table></div>
+
+
+<p></figure></p>
+
+<h3>SUMMARY</h3>
+
+<p>So to sum things up, if you&rsquo;re ever confused on what kind of form you can use just ask yourself this simple question&hellip; <em>&ldquo;Is there a <strong>model</strong> associated with the form?&rdquo;</em></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jarret Moses</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-30T23:06:15-04:00" pubdate data-updated="true"></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jmoses89.github.io/blog/2014/10/30/should-i-use-form-for-or-form-tag/" data-via="" data-counturl="http://jmoses89.github.io/blog/2014/10/30/should-i-use-form-for-or-form-tag/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/10/15/changing-a-word-into-one-dollar/" title="Previous Post: Capturing Regexp and Using '$1'">&laquo; Capturing Regexp and Using &#8216;$1&#8217;</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+  <aside class="sidebar">
+   
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jmoses89.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+  
+    
+  
+</aside>
+
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Jarret Moses -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script>
+  $(document).ready(function() {  
+  var stickyNavTop = $('nav').offset().top;  
+    
+  var stickyNav = function(){  
+  var scrollTop = $(window).scrollTop();  
+         
+  if (scrollTop > stickyNavTop) {   
+      $('nav').addClass('sticky');  
+  } else {  
+      $('nav').removeClass('sticky');   
+  }  
+  };  
+    
+  stickyNav();  
+    
+  $(window).scroll(function() {  
+      stickyNav();  
+  });  
+  });  
+</script>
+
+
+</body>
+</html>
