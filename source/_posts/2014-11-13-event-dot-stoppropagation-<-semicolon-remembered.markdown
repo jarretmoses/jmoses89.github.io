@@ -7,10 +7,20 @@ categories:
 ---
 ###Preface
 
-Yesterday during lecture, wea glossed over the concept of event.stopPropagation(); What is it? That's a good question. Mainly, I wanted to udnerstand what the concept of 'bubbling up the DOM tree' meant. I decided to sit down and play around with some javascript to find out.
+Yesterday during lecture, we glossed over the concept of event.stopPropagation(); What is it? That's a good question. Mainly, I wanted to understand what the concept of 'bubbling up the DOM tree' meant. I decided to sit down and play around with some javascript to find out.
 
 #### Test Subjects
 {% img /images/div.png %}
+
+####HTML
+``` html
+<div class="container">
+  <div class="div1">Steven
+    <div class="div2">Tristan    
+    </div>    
+  </div>
+</div>
+```
 
 #### Hacking Around
 
