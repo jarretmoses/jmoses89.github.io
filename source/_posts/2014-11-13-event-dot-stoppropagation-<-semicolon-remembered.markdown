@@ -30,7 +30,7 @@ $(function(){
   });
 });
 ```
-[Try Code 1](../images/prop0.html)<br>
+[Try Code 1](./prop0.html)<br>
 
 In my first attempt to figure out what event.stopPropagation() is, I placed a div inside a div and added an event handler to the outer div which would display an alert anywhere I clicked inside div1...including div2. So since div2 is inside div1 div2 counts as part of div1. That makes sense but doesn't yet solve my problem.
 
