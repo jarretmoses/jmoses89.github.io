@@ -4,7 +4,7 @@
   <title><![CDATA[Jarret Moses]]></title>
   <link href="http://jmoses89.github.io/atom.xml" rel="self"/>
   <link href="http://jmoses89.github.io/"/>
-  <updated>2014-10-31T00:28:56-04:00</updated>
+  <updated>2014-11-14T00:36:22-05:00</updated>
   <id>http://jmoses89.github.io/</id>
   <author>
     <name><![CDATA[Jarret Moses]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[event.stopPropagation(); <--semicolon Remembered]]></title>
+    <link href="http://jmoses89.github.io/blog/2014/11/13/event-dot-stoppropagation-%3C-semicolon-remembered/"/>
+    <updated>2014-11-13T23:36:18-05:00</updated>
+    <id>http://jmoses89.github.io/blog/2014/11/13/event-dot-stoppropagation-<-semicolon-remembered</id>
+    <content type="html"><![CDATA[<h3>Preface</h3>
+
+<p>Yesterday during lecture, wea glossed over the concept of event.stopPropagation(); What is it? That&rsquo;s a good question. Mainly, I wanted to udnerstand what the concept of &lsquo;bubbling up the DOM tree&rsquo; meant. I decided to sit down and play around with some javascript to find out.</p>
+
+<h4>Test Subjects</h4>
+
+<p><img src="http://jmoses89.github.io/images/div.png"></p>
+
+<h4>Hacking Around</h4>
+
+<h5>Code 1</h5>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.div1&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Hey I&#39;m Steven!&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In my first start to ficure out what event.stopPropagation() is I placed a div inside a div and added an event handler to the outer div which would display an alert anywhere I clicked inside div1..including div2. So since div2 is inside div1 div2 counts as part of div1. That makes sense but doesn&rsquo;t yet solve my problem.</p>
+
+<h5>Code 2</h5>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.div1&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Hey I&#39;m Steven!&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.div2&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Hey I&#39;m Tristan!&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> Here is where thhings get interesting. If I click outside of Tristan, only Steven&rsquo;s alert will pop up. However, If I click inside of Tristan(red) I will have an alert box pop up saying &lsquo;Hey I&rsquo;m Tristan!&rsquo;, but then following that I get an alert saying &lsquo;Hey I&rsquo;m Steven!&rsquo; Here I start to udenrstand the concept of bubbling. Since Tristan is inside of Steven, even though there is an event handler inside Tristan, Steven will still be triggered.</p>
+
+<p> #####Code 3</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.div1&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Hey I&#39;m Steven!&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">})</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.div2&#39;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+</span><span class='line'>    <span class="nx">event</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();</span>
+</span><span class='line'>    <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Hey I&#39;m Tristan!&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">})</span>
+</span><span class='line'><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is where it all makes sense. While clicking on Steven still works the same, when I click on Tristan, I only get the alert associated with this event handler.</p>
+
+<h4>Summary</h4>
+
+<p>After playing around with this concept I have come to understand that stopping propagation relates to when sibling elements and their parents both have event watchers. Without event.stopPropagation(): the child and any of its parent&rsquo;s events will be triggered. However with it, the event will be isolated, thus stopping the &lsquo;bubbling&rsquo; up the DOM.</p>
+
+<p><img src="http://jmoses89.github.io/images/dance.gif"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[So Many Forms, Which Do I Use?!?]]></title>
