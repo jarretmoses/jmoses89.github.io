@@ -30,7 +30,7 @@ $(function(){
   });
 });
 ```
-[Try Code 1](../downloads/prop0.html)<br>
+[Try Code 1](../prop0.html)<br>
 
 In my first attempt to figure out what event.stopPropagation() is, I placed a div inside a div and added an event handler to the outer div which would display an alert anywhere I clicked inside div1...including div2. So since div2 is inside div1 div2 counts as part of div1. That makes sense but doesn't yet solve my problem.
 
@@ -45,7 +45,7 @@ In my first attempt to figure out what event.stopPropagation() is, I placed a di
       });
     });
 ```
-[Try Code 2](../downloads/prop1.html)<br>
+[Try Code 2](../prop1.html)<br>
  Here is where things get interesting. If I click outside of Tristan, only Steven's alert will pop up. However, If I click inside of Tristan(red) I will have an alert box pop up saying 'Hey I'm Tristan!', but then following that I get an alert saying 'Hey I'm Steven!' Here I start to understand the concept of 'bubbling'. Since Tristan is inside of Steven, even though there is an event handler inside Tristan, Steven's event will still be triggered.
 
 
@@ -62,7 +62,7 @@ In my first attempt to figure out what event.stopPropagation() is, I placed a di
     });
 ```
 
-[Try Code 3](../downloads/prop2.html)<br>
+[Try Code 3](../prop2.html)<br>
 This is where it all makes sense. While clicking on Steven still works the same, when I click on Tristan, I only get the alert associated with this event handler. 
 
 
