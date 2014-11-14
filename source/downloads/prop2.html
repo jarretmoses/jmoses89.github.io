@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    $(function(){
+      $('.div1').click(function(event){
+        alert("Hi I'm Steven");
+      })
+      $('.div2').click(function(event){
+        event.stopPropagation();
+        alert("Hi I'm Tristan");
+      })
+    });
+  </script>
+  
+  <style type="text/css">
+
+    .div1{
+      background-color: aqua;
+      width: 200px;
+      height: 200px;
+      text-align: center;
+    }
+
+    .div2{
+      background-color: red; 
+      width: 75px;
+      height: 75px;
+      margin: 0 auto;
+      position: relative;
+      top: 20%;
+    }
+
+    .container{
+      width: 50%;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="div1">Steven
+    <div class="div2">Tristan    
+    </div>    
+  </div>
+</div>
+
+</body>
+</html>

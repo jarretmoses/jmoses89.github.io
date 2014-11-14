@@ -59,6 +59,8 @@ In my first attempt to figure out what event.stopPropagation() is, I placed a di
       })
     });
 ```
+
+[link text itself]: (../downloads/prop2.html)
 This is where it all makes sense. While clicking on Steven still works the same, when I click on Tristan, I only get the alert associated with this event handler. 
 
 
