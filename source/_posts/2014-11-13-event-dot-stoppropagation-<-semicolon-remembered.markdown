@@ -31,7 +31,7 @@ $(function(){
 });
 ```
 
-In my first start to ficure out what event.stopPropagation() is I placed a div inside a div and added an event handler to the outer div which would display an alert anywhere I clicked inside div1..including div2. So since div2 is inside div1 div2 counts as part of div1. That makes sense but doesn't yet solve my problem.
+In my first attempt to figure out what event.stopPropagation() is, I placed a div inside a div and added an event handler to the outer div which would display an alert anywhere I clicked inside div1...including div2. So since div2 is inside div1 div2 counts as part of div1. That makes sense but doesn't yet solve my problem.
 
 #####Code 2
 ``` javascript
@@ -44,14 +44,13 @@ In my first start to ficure out what event.stopPropagation() is I placed a div i
       });
     });
 ```
- Here is where thhings get interesting. If I click outside of Tristan, only Steven's alert will pop up. However, If I click inside of Tristan(red) I will have an alert box pop up saying 'Hey I'm Tristan!', but then following that I get an alert saying 'Hey I'm Steven!' Here I start to udenrstand the concept of bubbling. Since Tristan is inside of Steven, even though there is an event handler inside Tristan, Steven will still be triggered.
+ Here is where things get interesting. If I click outside of Tristan, only Steven's alert will pop up. However, If I click inside of Tristan(red) I will have an alert box pop up saying 'Hey I'm Tristan!', but then following that I get an alert saying 'Hey I'm Steven!' Here I start to understand the concept of 'bubbling'. Since Tristan is inside of Steven, even though there is an event handler inside Tristan, Steven's event will still be triggered.
 
 
  #####Code 3
 ``` javascript
     $(function(){
       $('.div1').click(function(){
-        event.stopPropagation();
         alert("Hey I'm Steven!");
       })
       $('.div2').click(function(event){
