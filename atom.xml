@@ -4,7 +4,7 @@
   <title><![CDATA[Jarret Moses]]></title>
   <link href="http://jmoses89.github.io/atom.xml" rel="self"/>
   <link href="http://jmoses89.github.io/"/>
-  <updated>2014-11-14T08:53:00-05:00</updated>
+  <updated>2014-11-14T09:22:31-05:00</updated>
   <id>http://jmoses89.github.io/</id>
   <author>
     <name><![CDATA[Jarret Moses]]></name>
@@ -56,7 +56,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><a href="../images/prop0.html">Try Code 1</a><br></p>
+<p><a href="http://jmoses89.github.io/images/prop0.html">Try Code 1</a><br></p>
 
 <p>In my first attempt to figure out what event.stopPropagation() is, I placed a div inside a div and added an event handler to the outer div which would display an alert anywhere I clicked inside div1&hellip;including div2. So since div2 is inside div1 div2 counts as part of div1. That makes sense but doesn&rsquo;t yet solve my problem.</p>
 
@@ -81,7 +81,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><a href="../images/prop1.html">Try Code 2</a><br>
+<p><a href="http://jmoses89.github.io/images/prop1.html">Try Code 2</a><br>
  Here is where things get interesting. If I click outside of Tristan, only Steven&rsquo;s alert will pop up. However, If I click inside of Tristan(red) I will have an alert box pop up saying &lsquo;Hey I&rsquo;m Tristan!&rsquo;, but then following that I get an alert saying &lsquo;Hey I&rsquo;m Steven!&rsquo; Here I start to understand the concept of &lsquo;bubbling&rsquo;. Since Tristan is inside of Steven, even though there is an event handler inside Tristan, Steven&rsquo;s event will still be triggered.</p>
 
 <p> #####Code 3</p>
@@ -107,7 +107,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><a href="../images/prop2.html">Try Code 3</a><br>
+<p><a href="http://jmoses89.github.io/images/prop2.html">Try Code 3</a><br>
 This is where it all makes sense. While clicking on Steven still works the same, when I click on Tristan, I only get the alert associated with this event handler.</p>
 
 <h4>Summary</h4>
