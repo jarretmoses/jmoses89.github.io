@@ -14,12 +14,10 @@ Yesterday during lecture, we glossed over the concept of event.stopPropagation()
 
 ####HTML
 ``` html
-<div class="container">
   <div class="div1">Steven
     <div class="div2">Tristan    
     </div>    
   </div>
-</div>
 ```
 
 #### Hacking Around
