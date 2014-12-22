@@ -9,11 +9,7 @@
   <meta name="author" content="Jarret Moses">
 
   
-  <meta name="description" content="sb&mdash;
-layout: post
-title: &ldquo;DRYing up your routes in Rails&rdquo;
-date: 2014-12-22 15:57:51 -0500
-comments: true categories: A very &hellip;">
+  <meta name="description" content="A very important programming paradigm is the idea of keeping your code DRY. Dry meaning &ldquo;Don&rsquo;t Repeat Yourself.&rdquo; While it&rsquo;s &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,7 +64,7 @@ comments: true categories: A very &hellip;">
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2014/12/22/drying-up-your-routes-in-rails/">Drying Up Your Routes in Rails</a></h1>
+      <h1 class="entry-title"><a href="/blog/2014/12/22/drying-up-your-routes-in-rails/">DRYing Up Your Routes in Rails</a></h1>
     
     
       <p class="meta">
@@ -84,22 +80,14 @@ comments: true categories: A very &hellip;">
   
 
 
-<time datetime="2014-12-22T00:00:00-05:00" pubdate data-updated="true"></time>
+<time datetime="2014-12-22T15:57:51-05:00" pubdate data-updated="true"></time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>sb&mdash;
-layout: post
-title: &ldquo;DRYing up your routes in Rails&rdquo;
-date: 2014-12-22 15:57:51 -0500
-comments: true</p>
-
-<h2>categories: </h2>
-
-<p>A very important programming paradigm is the idea of keeping your code DRY. Dry meaning &ldquo;Don&rsquo;t Repeat Yourself.&rdquo; While it&rsquo;s something programmers keep in mind, it is easy to forget about this in less obvious aspects of our code such as our routes file.</p>
+  <div class="entry-content"><p>A very important programming paradigm is the idea of keeping your code DRY. Dry meaning &ldquo;Don&rsquo;t Repeat Yourself.&rdquo; While it&rsquo;s something programmers keep in mind, it is easy to forget about this in less obvious aspects of our code such as our routes file.</p>
 
 <p>For example, I have these routes in one of my projects</p>
 
@@ -139,7 +127,7 @@ comments: true</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Notice here we specify routes for the movies controller by means of controller: :movies. Then this removes the need of specifying the controller for all of the routes making this code more DRY. There are other options that can be passed into the scope method</p>
+<p>Notice here we specify routes for the movies controller by means of controller: :movies. Then this removes the need of specifying the controller for all of the routes making this code more DRY. There are other options that can be passed into the scope method such as path which would remove duplicate code in the static string.</p>
 
 <h3>Conclusion</h3>
 

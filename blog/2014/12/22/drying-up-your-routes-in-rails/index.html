@@ -1,12 +1,90 @@
-<p>sb&mdash;
-layout: post
-title: &ldquo;DRYing up your routes in Rails&rdquo;
-date: 2014-12-22 15:57:51 -0500
-comments: true</p>
 
-<h2>categories: </h2>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>DRYing Up Your Routes in Rails - Jarret Moses</title>
+  <meta name="author" content="Jarret Moses">
 
-<p>A very important programming paradigm is the idea of keeping your code DRY. Dry meaning &ldquo;Don&rsquo;t Repeat Yourself.&rdquo; While it&rsquo;s something programmers keep in mind, it is easy to forget about this in less obvious aspects of our code such as our routes file.</p>
+  
+  <meta name="description" content="A very important programming paradigm is the idea of keeping your code DRY. Dry meaning &ldquo;Don&rsquo;t Repeat Yourself.&rdquo; While it&rsquo;s &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jmoses89.github.io/blog/2014/12/22/drying-up-your-routes-in-rails">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Jarret Moses" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='https://fonts.googleapis.com/css?family=Noto+Serif:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Jarret Moses</a></h1>
+  
+    <h2>The insights of a newbie developer.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  
+  
+</ul>
+
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">DRYing Up Your Routes in Rails</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-22T15:57:51-05:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>A very important programming paradigm is the idea of keeping your code DRY. Dry meaning &ldquo;Don&rsquo;t Repeat Yourself.&rdquo; While it&rsquo;s something programmers keep in mind, it is easy to forget about this in less obvious aspects of our code such as our routes file.</p>
 
 <p>For example, I have these routes in one of my projects</p>
 
@@ -46,8 +124,125 @@ comments: true</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Notice here we specify routes for the movies controller by means of controller: :movies. Then this removes the need of specifying the controller for all of the routes making this code more DRY. There are other options that can be passed into the scope method</p>
+<p>Notice here we specify routes for the movies controller by means of controller: :movies. Then this removes the need of specifying the controller for all of the routes making this code more DRY. There are other options that can be passed into the scope method such as path which would remove duplicate code in the static string.</p>
 
 <h3>Conclusion</h3>
 
 <p>it is important to try bring important coding paradigms such as DRY into all aspects of your code no matter how small. It is good practice and will make your code cleaner.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jarret Moses</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-22T15:57:51-05:00" pubdate data-updated="true"></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jmoses89.github.io/blog/2014/12/22/drying-up-your-routes-in-rails/" data-via="" data-counturl="http://jmoses89.github.io/blog/2014/12/22/drying-up-your-routes-in-rails/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/11/13/event-dot-stoppropagation-%3C-semicolon-remembered/" title="Previous Post: event.stopPropagation(); <--semicolon remembered">&laquo; event.stopPropagation(); <--semicolon remembered</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+  <aside class="sidebar">
+   
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jmoses89.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+  
+    
+  
+</aside>
+
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Jarret Moses -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script>
+  $(document).ready(function() {  
+  var stickyNavTop = $('nav').offset().top;  
+    
+  var stickyNav = function(){  
+  var scrollTop = $(window).scrollTop();  
+         
+  if (scrollTop > stickyNavTop) {   
+      $('nav').addClass('sticky');  
+  } else {  
+      $('nav').removeClass('sticky');   
+  }  
+  };  
+    
+  stickyNav();  
+    
+  $(window).scroll(function() {  
+      stickyNav();  
+  });  
+  });  
+</script>
+
+
+</body>
+</html>
