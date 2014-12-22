@@ -3,6 +3,14 @@
   
   
   <url>
+    <loc>http://jmoses89.github.io/blog/2014/12/22/drying-up-your-routes-in-rails/</loc>
+    
+    <lastmod>2014-12-22T00:00:00-05:00</lastmod>
+    
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>http://jmoses89.github.io/blog/2014/11/13/event-dot-stoppropagation-%3C-semicolon-remembered/</loc>
     
     <lastmod>2014-11-13T23:36:18-05:00</lastmod>
@@ -45,19 +53,25 @@
   
   <url>
     <loc>http://jmoses89.github.io/blog/archives/</loc>
-    <lastmod>2014-11-14T09:22:31-05:00</lastmod>
+    <lastmod>2014-12-22T17:01:12-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>http://jmoses89.github.io/</loc>
-    <lastmod>2014-11-14T09:22:31-05:00</lastmod>
+    <lastmod>2014-12-22T17:01:12-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   
+  
+  <url>
+    <loc>http://jmoses89.github.io/downloads/prop0.html</loc>
+    <lastmod>2014-11-14T10:03:29Z</lastmod>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>http://jmoses89.github.io/images/prop0.html</loc>

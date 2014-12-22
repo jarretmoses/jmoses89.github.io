@@ -1,0 +1,53 @@
+<p>sb&mdash;
+layout: post
+title: &ldquo;DRYing up your routes in Rails&rdquo;
+date: 2014-12-22 15:57:51 -0500
+comments: true</p>
+
+<h2>categories: </h2>
+
+<p>A very important programming paradigm is the idea of keeping your code DRY. Dry meaning &ldquo;Don&rsquo;t Repeat Yourself.&rdquo; While it&rsquo;s something programmers keep in mind, it is easy to forget about this in less obvious aspects of our code such as our routes file.</p>
+
+<p>For example, I have these routes in one of my projects</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1">#routes.rb</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">get</span> <span class="s1">&#39;/error&#39;</span><span class="p">,</span>     <span class="ss">to</span><span class="p">:</span> <span class="s1">&#39;movies#error&#39;</span><span class="p">,</span>  <span class="ss">as</span><span class="p">:</span> <span class="ss">:error</span>
+</span><span class='line'>   <span class="n">get</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span>     <span class="ss">to</span><span class="p">:</span> <span class="s1">&#39;movies#about&#39;</span><span class="p">,</span>  <span class="ss">as</span><span class="p">:</span> <span class="ss">:about</span>
+</span><span class='line'>   <span class="n">get</span> <span class="s1">&#39;/reset&#39;</span><span class="p">,</span>     <span class="ss">to</span><span class="p">:</span> <span class="s1">&#39;movies#reset&#39;</span><span class="p">,</span>  <span class="ss">as</span><span class="p">:</span> <span class="ss">:reset</span>
+</span><span class='line'>   <span class="n">get</span> <span class="s1">&#39;/help&#39;</span><span class="p">,</span>      <span class="ss">to</span><span class="p">:</span> <span class="s1">&#39;movies#help&#39;</span><span class="p">,</span>   <span class="ss">as</span><span class="p">:</span> <span class="ss">:help</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>While these routes are perfectly acceptable, they are not DRY. As you can see, each route is specifying the controller in which the route relates to with &lsquo;movies#&rsquo;. In order to make these routes more DRY, rails provides us with a scope: method that allow us to specify a block of route specific behavior. An example of this is refactoring the previous routes as follows&hellip;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1">#routes.rb</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">scope</span> <span class="ss">controller</span><span class="p">:</span> <span class="ss">:movies</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">get</span> <span class="s1">&#39;/error&#39;</span><span class="p">,</span>     <span class="ss">to</span><span class="p">:</span> <span class="ss">:error</span><span class="p">,</span>  <span class="ss">as</span><span class="p">:</span> <span class="ss">:error</span>
+</span><span class='line'>    <span class="n">get</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span>     <span class="ss">to</span><span class="p">:</span> <span class="ss">:about</span><span class="p">,</span>  <span class="ss">as</span><span class="p">:</span> <span class="ss">:about</span>
+</span><span class='line'>    <span class="n">get</span> <span class="s1">&#39;/reset&#39;</span><span class="p">,</span>     <span class="ss">to</span><span class="p">:</span> <span class="ss">:reset</span><span class="p">,</span>  <span class="ss">as</span><span class="p">:</span> <span class="ss">:reset</span>
+</span><span class='line'>    <span class="n">get</span> <span class="s1">&#39;/help&#39;</span><span class="p">,</span>      <span class="ss">to</span><span class="p">:</span> <span class="ss">:help</span><span class="p">,</span>   <span class="ss">as</span><span class="p">:</span> <span class="ss">:help</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice here we specify routes for the movies controller by means of controller: :movies. Then this removes the need of specifying the controller for all of the routes making this code more DRY. There are other options that can be passed into the scope method</p>
+
+<h3>Conclusion</h3>
+
+<p>it is important to try bring important coding paradigms such as DRY into all aspects of your code no matter how small. It is good practice and will make your code cleaner.</p>
