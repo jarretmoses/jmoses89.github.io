@@ -9,7 +9,7 @@
   <meta name="author" content="Jarret Moses">
 
   
-  <meta name="description" content="Preface Today I decided to start a mini series in my blog called &ldquo;Syntactic Sugar&rdquo; where I want to post cool(in my opinion) little code &hellip;">
+  <meta name="description" content="Premise Constructor functions in JavaScript can be a very powerful tool. However, when used improperly, things can get messy. So how can we protect &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -64,6 +64,148 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2015/01/03/safeguarding-against-improperly-called-javascript-constructor-functions/">Safeguarding Against Improperly Called JavaScript Constructor Functions</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-03T14:35:27-05:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h4>Premise</h4>
+
+<p>Constructor functions in JavaScript can be a very powerful tool. However, when used improperly, things can get messy. So how can we protect ourselves and others from the pitfalls of functionality?</p>
+
+<h4>Problem</h4>
+
+<p>At their core, constructor functions are simply functions, but it is the way they are <em>invoked</em> that affects their context(this). By this premise one could deduce that the definition of the function has no affect on the function&rsquo;s context. However, minus some conventions of making constructor names capitalized vs lowercase for &lsquo;regular&rsquo; functions, anyone using your code(especially beginners such as myself) could improperly call your constructor. This is because they are(as stated before) functions. Here is an example&hellip;.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="c1">// create a Person constructor function</span>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Jarret&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">me</span><span class="p">.</span><span class="nx">name</span>
+</span><span class='line'>  <span class="c1">// &#39;Jarret&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this situation, the constructor was properly used by invoking the Person function by preceding it with the <em>new</em> keyword. What is happening by including new is that JavaScript actually creates a new object &lsquo;{}&rsquo; and passes it into the constructor function as its context. Thus <em>this</em> refers the newly created object and this.name simply creates a name attribute on the object. Lastly, when a constructor function has completed, when there is no explicit return, the return value is the newly created object, which in this case gets assigned to the variable &lsquo;me&rsquo;.</p>
+
+<p>While this is a case of properly using a constructor, it is quite possible to invoke it as a &lsquo;regular&rsquo; function. The capitalized function name is convention for indicating a constructor, but for someone who may not be as familiar with JavaScript, they may see this as simply a function to be called as follows.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="c1">// create a Person constructor function</span>
+</span><span class='line'>  <span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Jarret&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">me</span><span class="p">.</span><span class="nx">name</span>
+</span><span class='line'>  <span class="c1">// Uncaught TypeError: Cannot read property &#39;name&#39; of undefined</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nb">window</span><span class="p">.</span><span class="nx">name</span>
+</span><span class='line'>  <span class="c1">// &#39;Jarret&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this example the constructor was called without the the <em>new</em> keyword and thus invoked as simply a function. From what we learned before, it is the invocation of a function that determines its context and in JavaScript when a function is called within the global scope(window), the context <em>this</em> is infact the window. So when we called the constructor as simply a function, this.name = name actually set an attribute &lsquo;name&rsquo; on the window, which is <strong>VERY BAD</strong>. In regular JavaScript functions, when no explicit return value is defined, the function returns <em>undefined</em> thus when trying to access the attribute name on undefined an error occured. So as the title of this article suggests&hellip;how can we safeguard ourselves from this problem?</p>
+
+<h4>Solution</h4>
+
+<p>The solution is quite simple and can save you from many headaches down the road. From our examples, the problem was the way in which the function was invoked, which directly affected the context. Thus from this knowledge we should be able to determine how the function itself was invoked by checking that the context is infact an instance of the constructor.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>   <span class="kd">function</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="k">this</span> <span class="k">instanceof</span> <span class="nx">Person</span><span class="p">)){</span>
+</span><span class='line'>      <span class="k">return</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">me_invoked_as_constructor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Jarret&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">me_called_as_constructor</span><span class="p">.</span><span class="nx">name</span>
+</span><span class='line'>  <span class="c1">// &#39;Jarret&#39;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">me_invoked_as_function</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">(</span><span class="s1">&#39;Jarret&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="nx">me_invoked_as_function</span><span class="p">.</span><span class="nx">name</span>
+</span><span class='line'>  <span class="c1">// &#39;Jarret&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In this example we return a correctly instantiated object no matter how we call the constructor function, because of the &lsquo;if statement&rsquo; we add. When an object is created in JavaScript it comes with a constructor property that references the constructor function that created it. That constructor(Person in our case) has a &lsquo;prototype&rsquo; property that all instances of the constructor inherit from. The <em>instanceof</em> method checks that the argument on the right&rsquo;s prototype property is within the argument on the left&rsquo;s <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain" target="_blank">prototype chain</a>. In terms of our example, if our constructor is called correctly then <em>this</em> refers to a newly created object with a constructor property referencing the Person constructor. Thus the Person constructor&rsquo;s prototype attribute is in the new object&rsquo;s prototype chain. However, if called as a regular function <em>this</em> refers to the window which was not an object created by the constructor and thus would not have the Person constructors prototype attribute within its prototype chain. In this case the if statement evaluates to true and we call the constructor function correctly without having to explicitly try again.</p>
+
+<h4>Conclusion</h4>
+
+<p>JavaScript can get fairly confusing, even with simple examples like this one. However, by being able to fully understand functional context, we were able to fix our code to work even when not properly used. How cool is that!</p>
+
+<h4>References</h4>
+
+<p>&ldquo;Secrets of the JavaScript Ninja&rdquo; by John Resig &amp; Bear Bibeault
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">Mozilla - Inheritance and Prototype Chain</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2015/01/02/syntactic-sugar-0-unary-plus-slash-vs-parseint/">Syntactic Sugar 0: Unary +/- vs parseInt</a></h1>
     
     
@@ -89,7 +231,7 @@
 
   <div class="entry-content"><h3>Preface</h3>
 
-<p>Today I decided to start a mini series in my blog called &ldquo;Syntactic Sugar&rdquo; where I want to post cool(in my opinion) little code shortcuts/snippets that can help make your code &lsquo;prettier&rsquo; but also give a deeper insight into code functionality that one could easily overlook. So this first post will be indexed as 0(naturally).</p>
+<p>Today I decided to start a mini series in my blog called &ldquo;Syntactic Sugar&rdquo; where I will post interesting little code shortcuts/snippets that can help clean up your code and give a deeper insight into code functionality that one could easily overlook. So this first post will be indexed as 0(naturally).</p>
 
 <h3>Converting a String into an Integer</h3>
 
@@ -131,7 +273,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>By placing a &lsquo;+&rsquo; infront of a single integer the &lsquo;+&rsquo; method triggers its unary functionality which is actually to convert the string into its integer equivalent. Additionally, you can use the &lsquo;-&rsquo; for negative numbers.</p>
+<p>By placing a &lsquo;+&rsquo; infront of a single integer value, the &lsquo;+&rsquo; operator&rsquo;s unary functionality is triggered, which actually converts the string into its integer equivalent. Additionally, you can use the &lsquo;-&rsquo; for negative numbers.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -140,7 +282,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p> This functionality does differ a bit from parseInt in that it only works for decimal numbers while parseInt can convert to other number bases.</p>
+<p> It is important to note that this functionality does differ a bit from parseInt in that it only works for decimal numbers while parseInt can convert to other number bases(binary,hex,etc&hellip;).</p>
 
 <h4>Resources</h4>
 
