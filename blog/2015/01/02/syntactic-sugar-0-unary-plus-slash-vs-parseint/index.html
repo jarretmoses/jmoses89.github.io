@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Syntactic Sugar 0: Unary +/- vs parseInt - Jarret Moses</title>
+  <meta name="author" content="Jarret Moses">
+
+  
+  <meta name="description" content="Preface Today I decided to start a mini series in my blog called &ldquo;Syntactic Sugar&rdquo; where I want to post cool(in my opinion) little code &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://jmoses89.github.io/blog/2015/01/02/syntactic-sugar-0-unary-plus-slash-vs-parseint">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Jarret Moses" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href='https://fonts.googleapis.com/css?family=Noto+Serif:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Jarret Moses</a></h1>
+  
+    <h2>The insights of a newbie developer.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  
+  
+</ul>
+
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Syntactic Sugar 0: Unary +/- vs parseInt</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-02T18:23:19-05:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h3>Preface</h3>
+
+<p>Today I decided to start a mini series in my blog called &ldquo;Syntactic Sugar&rdquo; where I want to post cool(in my opinion) little code shortcuts/snippets that can help make your code &lsquo;prettier&rsquo; but also give a deeper insight into code functionality that one could easily overlook. So this first post will be indexed as 0(naturally).</p>
+
+<h3>Converting a String into an Integer</h3>
+
+<p>Anyone with a very basic knowledge of JavaScript would probably know that to add two numbers together one would do the following&hellip;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'><span class="c1">// 2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The &lsquo;+&rsquo; operator is also used for string concatenation.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="s2">&quot;World!&quot;</span>
+</span><span class='line'><span class="c1">// &quot;Hello, World!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>However there is a third unary usage for &lsquo;+&rsquo;(and &lsquo;-&rsquo;) operator(s) that I personally overlooked and happened to just learn. With that in mind I would want you to think about how you would change the string &lsquo;10&rsquo; into its integer equivalent?</p>
+
+<p>If you were like me you probably thought of the following&hellip;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1">// 10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is totally correct and acceptable. parseInt takes in a string and base argument and converts it into an integer. However, there is another way to do this as well.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="o">+</span><span class="s1">&#39;10&#39;</span>
+</span><span class='line'>  <span class="c1">// 10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>By placing a &lsquo;+&rsquo; infront of a single integer the &lsquo;+&rsquo; method triggers its unary functionality which is actually to convert the string into its integer equivalent. Additionally, you can use the &lsquo;-&rsquo; for negative numbers.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="o">-</span><span class="s1">&#39;10&#39;</span>
+</span><span class='line'>  <span class="c1">// -10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> This functionality does differ a bit from parseInt in that it only works for decimal numbers while parseInt can convert to other number bases.</p>
+
+<h4>Resources</h4>
+
+<p><a href="http://en.wikibooks.org/wiki/JavaScript/Operators" target="_blank"><a href="http://en.wikibooks.org/wiki/JavaScript/Operators">http://en.wikibooks.org/wiki/JavaScript/Operators</a></a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Jarret Moses</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-02T18:23:19-05:00" pubdate data-updated="true"></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://jmoses89.github.io/blog/2015/01/02/syntactic-sugar-0-unary-plus-slash-vs-parseint/" data-via="" data-counturl="http://jmoses89.github.io/blog/2015/01/02/syntactic-sugar-0-unary-plus-slash-vs-parseint/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/12/22/drying-up-your-routes-in-rails/" title="Previous Post: DRYing up your routes in Rails">&laquo; DRYing up your routes in Rails</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+  <aside class="sidebar">
+   
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:jmoses89.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+  
+    
+  
+</aside>
+
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Jarret Moses -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+<script>
+  $(document).ready(function() {  
+  var stickyNavTop = $('nav').offset().top;  
+    
+  var stickyNav = function(){  
+  var scrollTop = $(window).scrollTop();  
+         
+  if (scrollTop > stickyNavTop) {   
+      $('nav').addClass('sticky');  
+  } else {  
+      $('nav').removeClass('sticky');   
+  }  
+  };  
+    
+  stickyNav();  
+    
+  $(window).scroll(function() {  
+      stickyNav();  
+  });  
+  });  
+</script>
+
+
+</body>
+</html>

@@ -9,7 +9,7 @@
   <meta name="author" content="Jarret Moses">
 
   
-  <meta name="description" content="A very important programming paradigm is the idea of keeping your code DRY. Dry meaning &ldquo;Don&rsquo;t Repeat Yourself.&rdquo; While it&rsquo;s &hellip;">
+  <meta name="description" content="Preface Today I decided to start a mini series in my blog called &ldquo;Syntactic Sugar&rdquo; where I want to post cool(in my opinion) little code &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -58,6 +58,99 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/02/syntactic-sugar-0-unary-plus-slash-vs-parseint/">Syntactic Sugar 0: Unary +/- vs parseInt</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-02T18:23:19-05:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Preface</h3>
+
+<p>Today I decided to start a mini series in my blog called &ldquo;Syntactic Sugar&rdquo; where I want to post cool(in my opinion) little code shortcuts/snippets that can help make your code &lsquo;prettier&rsquo; but also give a deeper insight into code functionality that one could easily overlook. So this first post will be indexed as 0(naturally).</p>
+
+<h3>Converting a String into an Integer</h3>
+
+<p>Anyone with a very basic knowledge of JavaScript would probably know that to add two numbers together one would do the following&hellip;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'><span class="c1">// 2</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The &lsquo;+&rsquo; operator is also used for string concatenation.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="s2">&quot;World!&quot;</span>
+</span><span class='line'><span class="c1">// &quot;Hello, World!&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>However there is a third unary usage for &lsquo;+&rsquo;(and &lsquo;-&rsquo;) operator(s) that I personally overlooked and happened to just learn. With that in mind I would want you to think about how you would change the string &lsquo;10&rsquo; into its integer equivalent?</p>
+
+<p>If you were like me you probably thought of the following&hellip;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="nb">parseInt</span><span class="p">(</span><span class="s1">&#39;10&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>  <span class="c1">// 10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is totally correct and acceptable. parseInt takes in a string and base argument and converts it into an integer. However, there is another way to do this as well.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="o">+</span><span class="s1">&#39;10&#39;</span>
+</span><span class='line'>  <span class="c1">// 10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>By placing a &lsquo;+&rsquo; infront of a single integer the &lsquo;+&rsquo; method triggers its unary functionality which is actually to convert the string into its integer equivalent. Additionally, you can use the &lsquo;-&rsquo; for negative numbers.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'>  <span class="o">-</span><span class="s1">&#39;10&#39;</span>
+</span><span class='line'>  <span class="c1">// -10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> This functionality does differ a bit from parseInt in that it only works for decimal numbers while parseInt can convert to other number bases.</p>
+
+<h4>Resources</h4>
+
+<p><a href="http://en.wikibooks.org/wiki/JavaScript/Operators" target="_blank"><a href="http://en.wikibooks.org/wiki/JavaScript/Operators">http://en.wikibooks.org/wiki/JavaScript/Operators</a></a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -828,7 +921,7 @@ Starting from the right most value (1) every next value is raised to the power o
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2014 - Jarret Moses -
+  Copyright &copy; 2015 - Jarret Moses -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
